@@ -11,13 +11,15 @@
     - name: Show host
       debug:
         msg: "{{ out.stdout }}"
+
     - name: test shell
       shell: |
         cat /etc/os-release
-    - name: test shell
-      shell: |
-        echo " ========================================"
-    
+      register: out
+    - name: Show host
+      debug:
+        msg: "{{ out.stdout }}"
+
 
 
 
