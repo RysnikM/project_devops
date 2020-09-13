@@ -8,3 +8,11 @@
 - name: Add Nginx cofig
   when: nginxinstalled is success
   template: src=default.j2 dest=/etc/nginx/sites-available/default owner=www-data group=www-data
+  notify:
+  - nginx restart    
+
+# - name: Create Root Directory for Nginx
+#   when: nginxinstalled is success
+#   file: path={{ root }}  mode=775 state=directory owner=www-data group=www-data
+#   notify:
+#   - nginx restart    
