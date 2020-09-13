@@ -2,7 +2,7 @@
 - name: update os
   shell:
     cmd: apt update -y
-    
+
 - name: Install base needed apt-packages
   apt:
     name: "{{ apt_http_packages }}"
