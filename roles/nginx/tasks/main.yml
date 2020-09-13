@@ -1,38 +1,16 @@
 ---
-
 - name: Install Nginx
-  apt: name=nginx update_cache={{ update_apt_cache }} state=present
-  tags: packages
+  apt: name=nginx state=latest update_cache=true
+  register: nginxinstalled
+  notify:
+  - nginx start
 
-- name: Copy the SSL certificate to the remote server
-  copy: content={{ ssl_crt }} dest={{ nginx_ssl_dest_dir }}/{{ application_name }}.crt
-  notify: restart nginx
-  when: not nginx_use_letsencrypt
+- name: Add Nginx cofig
+  when: nginxinstalled is success
+  template: src=default.j2 dest=/etc/nginx/sites-available/default owner=www-data group=www-data
 
-- name: Copy the SSL private key to the remote server
-  copy: content={{ ssl_key }} dest={{ nginx_ssl_dest_dir }}/{{ application_name }}.key
-  notify: restart nginx
-  when: not nginx_use_letsencrypt
-
-- name: Ensure that a strong Diffie-Hellman group is used
-  command: openssl dhparam -out /etc/ssl/certs/dhparams.pem 2048 creates=/etc/ssl/certs/dhparams.pem
-  when: nginx_strong_dh_group is defined and nginx_strong_dh_group
-
-- name: Create the Nginx configuration file
-  template: src={{ application_name }}.j2
-            dest=/etc/nginx/sites-available/{{ application_name }}
-            backup=yes
-  notify: reload nginx
-
-- name: Ensure that the default site is disabled
-  file: path=/etc/nginx/sites-enabled/default state=absent
-  notify: reload nginx
-
-- name: Ensure that the application site is enabled
-  file: src=/etc/nginx/sites-available/{{ application_name }}
-        dest=/etc/nginx/sites-enabled/{{ application_name }}
-        state=link
-  notify: reload nginx
-
-- name: Ensure Nginx service is started
-  service: name=nginx state=started enabled=yes
+- name: Create Root Directory for Nginx
+  when: nginxinstalled is success
+  file: path={{ root }}  mode=775 state=directory owner=www-data group=www-data
+  notify:
+  - nginx restart    
