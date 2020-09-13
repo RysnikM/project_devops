@@ -12,18 +12,8 @@
       debug:
         msg: "{{ out.stdout }}"
 
-    - name: test shell
-      shell: |
-        cat /etc/os-release
-      register: out
-    - name: Show host
-      debug:
-        msg: "{{ out.stdout }}"
-
-
-
-
-#   roles:
+  roles:
+    - general
 #     - nginx
 #     - postgresql
 #     - django
