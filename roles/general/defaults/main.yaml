@@ -1,9 +1,5 @@
 apt_http_packages:
-    - python3-dev
-    - python3-virtualenv
-    - python3-pip
-    - tcl-dev
-    - tk-dev
-    - python3-tk
+    - python3-pip 
+    - python3-dev 
+    - libpq-dev
     - git
-    - virtualenv
