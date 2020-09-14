@@ -1,0 +1,43 @@
+---
+- name: Create a directory if it does not exist
+  file: 
+    path: '{{ project_name_path }}'
+    state: directory
+    mode: '0755'
+
+- name: Install Django Framework
+  pip:
+    name: '{{ requiremens }}'
+          #    name: django, django-cors-headers
+    # virtualenv: "{{project_name_path}}/env"
+    # virtualenv_command: virtualenv
+    # virtualenv_python: python3
+
+- name: Instal python library for PSQL
+  pip:
+    name: psycopg2
+    # virtualenv: "{{project_name_path}}/env"
+    # virtualenv_command: virtualenv
+    # virtualenv_python: python3
+
+- name: Install a django project
+  command: "django-admin.py startproject {{ project_name }} {{ project_name_path }}"
+  ignore_errors: yes 
+
+- name: Create Settings File for Django
+  template: 
+    src: settings.py.j2 
+    dest: '{{ project_name_path }}/{{ project_name }}/settings.py'
+
+- name: Make migrations
+  shell: "python3 {{ project_name_path }}manage.py makemigrations"
+
+- name: Migrate database
+  django_manage: 
+    app_path: "{{ project_name_path }}"
+    command: migrate
+
+- name: Get all static files
+  django_manage: 
+    app_path: "{{ project_name_path }}"
+    command: collectstatic
