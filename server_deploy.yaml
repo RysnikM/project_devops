@@ -13,8 +13,8 @@
         msg: "{{ out.stdout }}"
 
   roles:
-    - general
-    - nginx
-    - postgresql
+    # - general
+    # - nginx
+    # - postgresql
     - django
 #     - gunicorn
