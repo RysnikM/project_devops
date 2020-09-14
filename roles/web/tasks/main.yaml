@@ -1,6 +1,6 @@
 ---
 - name: Clone git repo
-- git:
+  git:
     repo: '{{ git_url }}'
     dest: '{{ project_path }}'
     version: '{{ web_release }}'
