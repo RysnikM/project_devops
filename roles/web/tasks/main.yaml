@@ -11,6 +11,9 @@
     version: '{{ web_release }}'
     force: yes
 
+- name: install library
+  shell: "pip3 install -r {{ project_path }}/requiremens.txt"
+
 - name: Make migrations
   shell: "python3 {{ project_path }}/manage.py makemigrations"
 
@@ -37,3 +40,14 @@
     # when: checksuperuser is succeeded
   shell: "python3 {{ project_path }}/manage.py createsuperuser --noinput --username=admin --email=rn@mvlab.by"
   ignore_errors: yes
+
+
+- name: Create Gunicorn Socket file
+  template: 
+    src: gunicorn.socket.j2 
+    dest: /etc/systemd/system/gunicorn.socket
+
+- name: Create Gunicorn Service file
+  template: 
+    src: gunicorn.service.j2 
+    dest: /etc/systemd/system/gunicorn.service 
