@@ -1,3 +1,4 @@
 ---
-  project_name_path: /home/demo
-  project_name: myproject
+  project_path: /home/demo
+  git_url: git@github.com:RysnikM/project_devops.git
+  web_release: web_release_0.1
