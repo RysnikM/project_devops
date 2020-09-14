@@ -5,13 +5,13 @@ After=network.target
 
 [Service]
 User=root
-Group=root
-WorkingDirectory={{ project_path }}/{{ project_name }}
-ExecStart=gunicorn \
+Group=www-data
+WorkingDirectory={{ project_path }}/
+ExecStart=/usr/local/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
           {{ project_name }}.wsgi:application
 
 [Install]
-WantedBy=multi-user.target 
+WantedBy=multi-user.target

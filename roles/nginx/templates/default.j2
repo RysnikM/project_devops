@@ -1,8 +1,7 @@
 server {
-    listen 80 default_server;
-    server_name 92.119.115.101;
-}
-server {
+    listen 80;
+    server_name 0.0.0.0;
+
     location / {
         include proxy_params;
         proxy_pass http://unix:/run/gunicorn.sock;
@@ -11,6 +10,6 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location /static/ {
-        root /home/mvlab/myprojectdir;
+        root /home/demo;
     }
-}  
+}

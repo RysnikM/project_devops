@@ -7,7 +7,11 @@
 
 - name: Add Nginx cofig
   when: nginxinstalled is success
-  template: src=default.j2 dest=/etc/nginx/sites-available/default owner=www-data group=www-data
+  template: 
+    src: default.j2 
+    dest: /etc/nginx/sites-available/default 
+    owner: www-data 
+    group: www-data
   notify:
   - nginx restart    
 

@@ -1,5 +1,5 @@
 ---
-  db_user: mydjangouser
+  db_user: myprojectuser
   db_password: password
-  db_name: mypriject
+  db_name: myproject
 

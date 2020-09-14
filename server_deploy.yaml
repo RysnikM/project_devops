@@ -13,7 +13,7 @@
         msg: "{{ out.stdout }}"
 
   roles:
-    # - general
-    # - postgresql
+    - general
+    - postgresql
     - web
-    # - nginx
+    - nginx
