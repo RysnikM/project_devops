@@ -9,6 +9,7 @@
     repo: '{{ git_url }}'
     dest: '{{ project_path }}'
     version: '{{ web_release }}'
+    force: yes
 
 - name: Make migrations
   shell: "python3 {{ project_path }}/manage.py makemigrations"
@@ -17,19 +18,22 @@
   shell: "python3 {{ project_path }}/manage.py migrate"
 
 - name: Get all static files    
-  shell: "python3 {{ project_path }}/manage.py collectstatic -y"
+  shell: "python3 {{ project_path }}/manage.py collectstatic"
+  ignore_errors: yes
 
-- name: Check if django superuser exists
-  django_manage:
-    app_path: '{{ project_path }}'
-    command: shell -c 'import sys; from django.contrib.auth.models import User; sys.exit(0 if User.objects.filter(username="admiin").count() > 0 else 1)'
-  register: checksuperuser
-  check_mode: True
-  ignore_errors: True
-  changed_when: False      
+# - name: Check if django superuser exists
+#   django_manage:
+#     app_path: '{{ project_path }}'
+#     command: shell -c 'import sys; from django.contrib.auth.models import User; sys.exit(0 if User.objects.filter(username="admin").count() > 0 else 1)'
+#   register: checksuperuser
+#   check_mode: True
+#   ignore_errors: True
+#   changed_when: False      
 
 - name: django create superuser
-  django_manage:
-    app_path: '{{ project_path }}'
-    command: "createsuperuser --noinput --username=admin --email=admin@{{ inventory_hostname }}"
-  when: checksuperuser.rc != 0
+  # django_manage:
+    # app_path: '{{ project_path }}'
+    # command: "createsuperuser --noinput --username=admin --email=rn@mvlab.by "
+    # when: checksuperuser is succeeded
+  shell: "python3 {{ project_path }}/manage.py createsuperuser --noinput --username=admin --email=rn@mvlab.by"
+  ignore_errors: yes
