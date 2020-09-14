@@ -14,7 +14,6 @@
 
   roles:
     # - general
-    # - nginx
-    #    - postgresql
+    # - postgresql
     - web
-#     - gunicorn
+    # - nginx
