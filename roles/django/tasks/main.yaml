@@ -7,7 +7,8 @@
 
 - name: Install Django Framework
   pip:
-    name: django
+    name: '{{ requiremens }}'
+          #    name: django, django-cors-headers
     # virtualenv: "{{project_name_path}}/env"
     # virtualenv_command: virtualenv
     # virtualenv_python: python3
@@ -29,14 +30,14 @@
     dest: '{{ project_name_path }}/{{ project_name }}/settings.py'
 
 - name: Make migrations
-  shell: "{{project_name_path}}/env/bin/python3 {{ project_name_path }}/{{ project_name }}/manage.py makemigrations"
+  shell: "python3 {{ project_name_path }}manage.py makemigrations"
 
 - name: Migrate database
-  django_manage: app_path={{ project_name_path }}/{{ project_name }}
-                        command=migrate
-                        virtualenv={{project_name_path}}/env
+  django_manage: 
+    app_path: "{{ project_name_path }}"
+    command: migrate
 
 - name: Get all static files
-  django_manage: app_path={{ project_name_path }}/{{ project_name }}
-                        command=collectstatic
-                        virtualenv={{project_name_path}}/env 
+  django_manage: 
+    app_path: "{{ project_name_path }}"
+    command: collectstatic

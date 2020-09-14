@@ -1,3 +1,7 @@
 ---
   project_name_path: /home/demo/
   project_name: djangoproject
+  requiremens: 
+   - django
+   - django-cors-headers
+   - channels
