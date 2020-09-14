@@ -1,7 +1,4 @@
 ---
-- name: Ensure locale is available
-  locale_gen: name=en_US.UTF-8
-
 - name: Install PostgreSQL
   apt:
     pkg:
@@ -16,26 +13,18 @@
   service: name=postgresql enabled=yes state=started
 
 - name: Create database
-  become: true
-  become_user: postgres
   postgresql_db: name={{ db_name }}
-                 encoding='UTF-8'
-                 lc_collate='en_US.UTF-8'
-                 lc_ctype='en_US.UTF-8'
-                 template='template0'
-                 state=present
-  notify:
-  - postgresql restart
-
-# - name: Add user postgres to root group
-#   shell:
-#     cmd: usermod -a -G root
+  become_user: postgres
+  become: yes
 
 - name: Create user
+  postgresql_user:  db={{ db_name }}
+                    name={{ db_user }}
+                    password={{ db_password }}
+                    priv=ALL
+                    state=present
+                    role_attr_flags=NOSUPERUSER,NOCREATEDB
+                    encrypted=yes
   become: yes
-  become_user: postgres 
-  postgresql_user: db={{ db_name }}
-                   name={{ db_user }}
-                   password={{ db_password }}
-                   priv="CONNECT/products:ALL"
-                   encrypted=yes
+  become_user: postgres
+
