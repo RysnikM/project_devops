@@ -7,11 +7,11 @@
 
 #### Name of application: MV_DEMO_SERVER
 
-    * NGINX-GUNICORN-DJANGO-POSRGRESQL
-    * What kind of DB: POSTGRESQL
-    * Links:
-        [GIT](https://github.com/RysnikM/project_devops)
-        [site](http://92.119.115.101/)
+    NGINX-GUNICORN-DJANGO-POSRGRESQL
+    What kind of DB: POSTGRESQL
+    Links:
+    [GIT](https://github.com/RysnikM/project_devops)
+    [Demo_serv](http://92.119.115.101/)
     
 #### Pipeline. High Level Design
 
