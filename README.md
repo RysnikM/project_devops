@@ -7,10 +7,12 @@
 
 #### Name of application: MV_DEMO_SERVER
 
-    * Which programming language is this application written in0
-    * What kind of DB
-    * Link on git repository/site/package repository
-
+    * NGINX-GUNICORN-DJANGO-POSRGRESQL
+    * What kind of DB: POSTGRESQL
+    * Links:
+        [GIT](https://github.com/RysnikM/project_devops)
+        [site](http://92.119.115.101/)
+    
 #### Pipeline. High Level Design
 
 [Scheme here]
