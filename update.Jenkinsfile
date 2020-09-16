@@ -4,7 +4,7 @@ pipeline{
       timestamps()
   }  
   stages{
-      stage(show date){
+      stage("show date"){
           steps{
               sh "timedatectl"
           }
