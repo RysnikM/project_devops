@@ -1,7 +1,0 @@
-apt_http_packages:
-    - python3-pip 
-    - python3-dev 
-    - libpq-dev
-    - git.
-    - default-jre
-    - default-jdk
