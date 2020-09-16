@@ -11,5 +11,10 @@ pipeline{
               sh "timedatectl"
           }
       }
+      stage("show ip settings"){
+          steps{
+              sh "ip a"
+          }
+      }
   }
 }
