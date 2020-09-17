@@ -19,6 +19,7 @@
 #### Pipeline. High Level Design
 
 [Scheme here]
+![](proj_scem.png)
 
 Technologies which were used in project
 Orchestration: Jenkins, git runners, ansible
