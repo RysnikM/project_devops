@@ -7,18 +7,17 @@
 
 #### Name of application: MV_DEMO_SERVER
 
-    NGINX-GUNICORN-DJANGO-POSRGRESQL
-    What kind of DB: POSTGRESQL
-    Links:
-    [GIT](https://github.com/RysnikM/project_devops)
-    [Demo_serv](http://92.119.115.101/)
-    [Jenkins](http://185.92.149.191:8080/)
-        user: guest
-        pass: guest
+NGINX-GUNICORN-DJANGO-POSRGRESQL
+What kind of DB: POSTGRESQL
+Links:
+[GIT](https://github.com/RysnikM/project_devops)
+[Demo_serv](http://92.119.115.101/)
+[Jenkins](http://185.92.149.191:8080/)
+    user: guest
+    pass: guest
 
 #### Pipeline. High Level Design
 
-[Scheme here]
 ![](proj_scem.png)
 
 Technologies which were used in project
