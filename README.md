@@ -13,7 +13,7 @@ Links:
   - [Jenkins](http://185.92.149.191:8080/)  user: guest, pass: guest  
  -  [Demo_server](http://92.119.115.101/)  
 
-Pipeline. High Level Design:
+Pipeline. High Level Design:  
 ![](proj_scem.png)  
 
 Links:
