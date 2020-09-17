@@ -18,8 +18,8 @@ Pipeline. High Level Design:
 
 Links:
  - Green deployment [pipeline](https://github.com/RysnikM/project_devops/tree/deploy)
- - Upgrade web [pipeline]()
- - Rollback [pipeline]()
+ - Upgrade web [pipeline](http://185.92.149.191:8080/)
+ - Rollback [pipeline](https://github.com/RysnikM/project_devops/tree/jenkins_pipeline)
 
 Technologies which were used in project:  
  - Orchestration: Jenkins, git runners, Ansible;  
