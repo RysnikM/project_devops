@@ -33,5 +33,14 @@ pipeline {
                 slackSend color: "good", message: "ERROR update server. RUN ROLLBACK"
             }
         }
+        stage("Clear backup if upgrade is succesfull"){
+            when{ expression { req == true } }
+            steps{
+                echo "UPGRADE SUCCESSFUL. STARTED CLEARING BACKUP FILES"
+                sh """
+                ls -l
+                """
+            }
+        }
     }
 }
