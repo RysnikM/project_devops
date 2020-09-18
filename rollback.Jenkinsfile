@@ -18,9 +18,7 @@ pipeline {
             when{ expression { req == false } }
             steps{ 
                 echo "START ROLLBACK"
-            }
-            // rolback steps
-            steps{
+                // rolback steps
                 sh """ 
                 cp -r /home/backup/* /home/demo
                 python3 /home/demo/manage.py makemigrations &&
@@ -29,6 +27,7 @@ pipeline {
                 """
             }
         }
+
         stage('Send notification in SLACK if update web is successful'){
             when{
                 expression { req == false }
