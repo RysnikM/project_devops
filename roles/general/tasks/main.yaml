@@ -8,6 +8,8 @@
     name: "{{ apt_http_packages }}"
     state: latest
     update_cache: yes
+
 - name: Add foldef rog jenkins connect
-  shell: 
-    cmd: mkdir /home/jenkins
+  file: 
+    path: /home/jenkins 
+    state: directory
