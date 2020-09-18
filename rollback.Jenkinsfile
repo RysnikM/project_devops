@@ -15,12 +15,8 @@ pipeline {
             }
         }
         stage('Check if update web is successful'){
-            when{
-                expression { req == false }
-            }
-            steps {
-                echo "START ROLLBACK"
-            }
+            when{ expression { req == false } }
+            steps { echo "START ROLLBACK"}
             // rolback steps
             steps {
                 sh """
@@ -30,7 +26,6 @@ pipeline {
                     PGPASSWORD="password" pg_restore -h 127.0.0.1 -U myprojectuser -d myproject -C db001.dump
                 """
             }
-
         }
         stage('Send notification in SLACK if update web is successful'){
             when{
