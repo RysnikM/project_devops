@@ -42,7 +42,7 @@ pipeline {
             steps{
                 echo "UPGRADE SUCCESSFUL. STARTED CLEARING BACKUP FILES"
                 sh """
-                rm -rf /home/backup && rm /home/db001.dump && rm -rf /home/jenkins/workspace/PROJ/update_project
+                rm -rf /home/backup && rm -f /home/db001.dump && rm -rf /home/jenkins/workspace/PROJ/update_project
                 """
             }
         }
