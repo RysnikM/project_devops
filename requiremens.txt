@@ -31,3 +31,4 @@ txaio               #20.4.1
 websockets          #8.1
 wheel               #0.34.2
 zope.interface      #5.1.0
+django-cors-headers #3.5.0
