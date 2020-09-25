@@ -28,3 +28,13 @@
   become: yes
   become_user: postgres
 
+- name: Create remote user
+  postgresql_user:  db={{ db_name }}
+                    name=remote_user
+                    password=password
+                    priv=ALL
+                    state=present
+                    role_attr_flags=NOSUPERUSER,NOCREATEDB
+                    encrypted=yes
+  become: yes
+  become_user: postgres
